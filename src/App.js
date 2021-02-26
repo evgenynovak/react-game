@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Board from './components/Board';
 import Cell from './components/Cell';
+import InfoScreen from './components/InfoScreen'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -20,12 +21,14 @@ let cellDone = {symbol: "C", status: "Done"};
 let cellFailed = {symbol: "D", status: "Failed"};
 
 let board = [cellOpen, cellClosed, cellClosed2, cellClosed3, cellDone, cellFailed];
+
+let statusGame = "Win"; //  
 //
 
 function App() {
   return (
     <AppWrapper>
-      <Board board={board} onClickAtCell={() => null}/>
+      <InfoScreen statusGame={statusGame} board={board} onClickAtCell={() => null} />
     </AppWrapper>
   );
 }
