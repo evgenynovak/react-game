@@ -5,8 +5,8 @@ import Cell from './Cell';
 const BoardBlock = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  width: 700px;
-  height: 700px;
+  width: 500px;
+  height: 500px;
   gap: 3px;
 `
 

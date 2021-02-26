@@ -5,9 +5,9 @@ import styled from 'styled-components';
 const CellBlock = styled.div`
   display: flex;
   min-height: 100px;
-  aling-items: center;
+  align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 5rem;
   background: ${props => props.background};
   cursor: ${props => props.cursor }
 

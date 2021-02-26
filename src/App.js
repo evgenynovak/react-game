@@ -4,10 +4,11 @@ import Board from './components/Board';
 import Cell from './components/Cell';
 
 const AppWrapper = styled.div`
-width: 100%;
-min-height: 100vh;
-padding: 2rem;
-background: #ffffff;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
 `
 
 //helpData
