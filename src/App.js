@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Board from './components/Board';
 import Cell from './components/Cell';
@@ -21,13 +21,32 @@ let cellDone = {symbol: "C", status: "Done"};
 let cellFailed = {symbol: "D", status: "Failed"};
 
 let board = [cellOpen, cellClosed, cellClosed2, cellClosed3, cellDone, cellFailed];
-
-let statusGame = "Win"; //  
 //
+let startGame = (state) => ({
+  board: board,
+  statusGame: "Run",
+});
 
 function App() {
+  const [state, setState] = useState({
+    ...startGame(),
+    statusGame: "Stop", 
+  });
+
+  let {board, statusGame} = state;
+
+  let handleStartGameClick = () => {
+    if (statusGame != "Run") {
+      setState(startGame);
+    };
+  };
+
+  //help
+  console.log(board);
+  console.log(statusGame);
+
   return (
-    <AppWrapper>
+    <AppWrapper onClick={handleStartGameClick}>
       <InfoScreen statusGame={statusGame} board={board} onClickAtCell={() => null} />
     </AppWrapper>
   );
