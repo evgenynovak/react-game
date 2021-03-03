@@ -2,11 +2,12 @@ import React, { useState , useEffect } from 'react';
 import styled from 'styled-components';
 import Board from './components/Board';
 import Cell from './components/Cell';
-import InfoScreen from './components/InfoScreen'
+import InfoScreen from './components/InfoScreen';
 
 const AppWrapper = styled.div`
   display: flex;
   height: 100vh;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #ffffff;
@@ -35,12 +36,13 @@ let startGame = () => ({
 function App() {
   let [state, setState] = useState({
     ...startGame(),
-    statusGame: "Stop", 
+    statusGame: "Stop",
   });
+
+  let {board, statusGame} = state;
 
   useEffect(() => {
     if ((statusGame == "Run") && ((board.filter(cell => cell.status == "Open")).length == 2)) {
-      console.log("USEEFFECT: "+ JSON.stringify(state))
       let dataCell = board.filter(cell => cell.status == "Open");
       if (dataCell[0].symbol == dataCell[1].symbol) {
         setState(
@@ -78,14 +80,7 @@ function App() {
     };
   },[state]);
 
-
-
-
-
-  let {board, statusGame} = state;
-
   let handleStartGameClick = () => {
-    console.log("GameClick: "+ JSON.stringify(state))
     if (statusGame != "Run") {
       setState(startGame);
     };
@@ -93,7 +88,6 @@ function App() {
 
   let handleClickAtCell = (i) => {
     if ((statusGame = "Run") && (CellLessTwo) && (board[i].status != "Done")) {
-      console.log("board "+board[i].status);
       setState(
         {
           ...state,
@@ -106,11 +100,6 @@ function App() {
   };
 
   let CellLessTwo = (board.filter(cell => cell.status == "Open")).length < 2 ;
-
-
-  //help
-  console.log(statusGame);
-  console.log("return "+JSON.stringify(state));
 
   return (
     <AppWrapper onClick={handleStartGameClick}>
