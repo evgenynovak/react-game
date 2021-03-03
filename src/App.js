@@ -60,6 +60,20 @@ function App() {
     };
   },[state]);
 
+  useEffect(() => {
+    if (statusGame == "Run") {
+      if ((board.filter(cell => cell.status == "Done").length == board.length)){
+        setState(
+          {
+            ...state,
+            statusGame: "Win",
+          }); 
+      }
+    };
+  },[state]);
+
+
+
   let {board, statusGame} = state;
 
   let handleStartGameClick = () => {
