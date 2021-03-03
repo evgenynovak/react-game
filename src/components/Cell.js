@@ -31,7 +31,7 @@ function Cell({cell, onClick}) {
   }
 
   return (
-    <CellBlock background={backgroundColor(status)} cursor={status === "Closed" ? "pointer" : ""}>
+    <CellBlock background={backgroundColor(status)} cursor={status === "Closed" ? "pointer" : ""} onClick={onClick}>
         {status == "Closed" ? "" : symbol}
     </CellBlock>
   );

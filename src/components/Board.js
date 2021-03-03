@@ -11,10 +11,11 @@ const BoardBlock = styled.div`
 `
 
 function Board ({board, onClickAtCell}) {
+  console.log(board);
   return (
     <BoardBlock>
       {board.map( (cell, i) =>
-        <Cell key={i} cell={cell} onClick={ () => onClickAtCell(i)} />
+        <Cell key={i} cell={cell} onClick={() => onClickAtCell(i)} />
       )}
     </BoardBlock>
   );

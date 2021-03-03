@@ -11,24 +11,23 @@ const AppWrapper = styled.div`
   justify-content: center;
   background: #ffffff;
 `
-
-//helpData
-let cellOpen = {symbol: "A", status: "Open"};
-let cellClosed = {symbol: "B", status: "Closed"};
-let cellClosed2 = {symbol: "C", status: "Closed"};
-let cellClosed3 = {symbol: "B", status: "Closed"};
-let cellDone = {symbol: "C", status: "Done"};
-let cellFailed = {symbol: "D", status: "Failed"};
-
-let board = [cellOpen, cellClosed, cellClosed2, cellClosed3, cellDone, cellFailed];
+let boardData = [
+  {symbol: "A", status: "Closed"}, 
+  {symbol: "B", status: "Closed"}, 
+  {symbol: "C", status: "Closed"}, 
+  {symbol: "B", status: "Closed"}, 
+  {symbol: "C", status: "Closed"}, 
+  {symbol: "D", status: "Closed"}
+];
 //
-let startGame = (state) => ({
-  board: board,
+
+let startGame = () => ({
+  board: boardData,
   statusGame: "Run",
 });
 
 function App() {
-  const [state, setState] = useState({
+  let [state, setState] = useState({
     ...startGame(),
     statusGame: "Stop", 
   });
@@ -36,18 +35,33 @@ function App() {
   let {board, statusGame} = state;
 
   let handleStartGameClick = () => {
+    console.log("GameClick: "+state)
     if (statusGame != "Run") {
       setState(startGame);
     };
   };
 
+  let handleClickAtCell = (i) => {
+    if ((statusGame = "Run") && (board[i].status != "Open") && (board[i].status != "Done")) {
+      console.log("board "+board[i].status);
+      setState(
+        {
+          ...state,
+          board: board.map( (cell,index) => index == i ? {
+            ...cell,
+            status: "Open"
+          } : cell),
+        });
+    };   
+  };
+
   //help
-  console.log(board);
   console.log(statusGame);
+  console.log("return "+JSON.stringify(state));
 
   return (
     <AppWrapper onClick={handleStartGameClick}>
-      <InfoScreen statusGame={statusGame} board={board} onClickAtCell={() => null} />
+      <InfoScreen statusGame={statusGame} board={board} onClickAtCell={handleClickAtCell} />
     </AppWrapper>
   );
 }
