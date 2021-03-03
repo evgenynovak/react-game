@@ -13,10 +13,16 @@ const AppWrapper = styled.div`
 `
 let boardData = [
   {symbol: "A", status: "Closed"}, 
-  {symbol: "B", status: "Closed"}, 
+  {symbol: "F", status: "Closed"}, 
   {symbol: "A", status: "Closed"}, 
   {symbol: "B", status: "Closed"}, 
   {symbol: "C", status: "Closed"}, 
+  {symbol: "D", status: "Closed"},
+  {symbol: "D", status: "Closed"}, 
+  {symbol: "E", status: "Closed"}, 
+  {symbol: "F", status: "Closed"}, 
+  {symbol: "B", status: "Closed"}, 
+  {symbol: "E", status: "Closed"}, 
   {symbol: "C", status: "Closed"}
 ];
 //
@@ -71,6 +77,8 @@ function App() {
       }
     };
   },[state]);
+
+
 
 
 
