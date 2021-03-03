@@ -35,14 +35,14 @@ function App() {
   let {board, statusGame} = state;
 
   let handleStartGameClick = () => {
-    console.log("GameClick: "+state)
+    console.log("GameClick: "+ JSON.stringify(state))
     if (statusGame != "Run") {
       setState(startGame);
     };
   };
 
   let handleClickAtCell = (i) => {
-    if ((statusGame = "Run") && (board[i].status != "Open") && (board[i].status != "Done")) {
+    if ((statusGame = "Run") && (CellLessTwo) && (board[i].status != "Done")) {
       console.log("board "+board[i].status);
       setState(
         {
@@ -54,6 +54,8 @@ function App() {
         });
     };   
   };
+
+  let CellLessTwo = (board.filter(cell => cell.status == "Open")).length < 2 ;
 
   //help
   console.log(statusGame);
