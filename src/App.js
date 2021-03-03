@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import styled from 'styled-components';
 import Board from './components/Board';
 import Cell from './components/Cell';
@@ -14,10 +14,10 @@ const AppWrapper = styled.div`
 let boardData = [
   {symbol: "A", status: "Closed"}, 
   {symbol: "B", status: "Closed"}, 
-  {symbol: "C", status: "Closed"}, 
+  {symbol: "A", status: "Closed"}, 
   {symbol: "B", status: "Closed"}, 
   {symbol: "C", status: "Closed"}, 
-  {symbol: "D", status: "Closed"}
+  {symbol: "C", status: "Closed"}
 ];
 //
 
@@ -31,6 +31,34 @@ function App() {
     ...startGame(),
     statusGame: "Stop", 
   });
+
+  useEffect(() => {
+    if ((statusGame == "Run") && ((board.filter(cell => cell.status == "Open")).length == 2)) {
+      console.log("USEEFFECT: "+ JSON.stringify(state))
+      let dataCell = board.filter(cell => cell.status == "Open");
+      if (dataCell[0].symbol == dataCell[1].symbol) {
+        setState(
+          {
+            ...state,
+            board: board.map( (cell) => cell.status == "Open" ? {
+              ...cell,
+              status: "Done"
+            } : cell),
+          });
+      } else {
+        setTimeout( () => {
+          setState(
+            {
+              ...state,
+              board: board.map( (cell) => cell.status == "Open" ? {
+                ...cell,
+                status: "Closed"
+              } : cell),
+            });
+        },500)
+      };
+    };
+  },[state]);
 
   let {board, statusGame} = state;
 
@@ -56,6 +84,7 @@ function App() {
   };
 
   let CellLessTwo = (board.filter(cell => cell.status == "Open")).length < 2 ;
+
 
   //help
   console.log(statusGame);
