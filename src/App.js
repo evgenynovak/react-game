@@ -12,6 +12,22 @@ const AppWrapper = styled.div`
   justify-content: center;
   background: #ffffff;
 `
+
+const FooterBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+const LogoBlock = styled.a`
+  width: 80px;
+  height: 30px; 
+  background: url('https://rs.school/images/rs_school_js.svg') no-repeat;
+`
+const GitBlock = styled.a`
+   
+
+`
+
 let boardData = [
   {symbol: "A", status: "Closed"}, 
   {symbol: "F", status: "Closed"}, 
@@ -104,6 +120,10 @@ function App() {
   return (
     <AppWrapper onClick={handleStartGameClick}>
       <InfoScreen statusGame={statusGame} board={board} onClickAtCell={handleClickAtCell} />
+      <FooterBlock>
+        <LogoBlock href={'https://rs.school/react/'}/>
+        <GitBlock href={'https://github.com/evgenynovak'}> github.com/evgenynovak </GitBlock>
+      </FooterBlock>
     </AppWrapper>
   );
 }
